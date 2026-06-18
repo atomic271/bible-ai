@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Bible AI Pro</title>
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="manifest" href="manifest.json">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h2>📖 Bible AI Pro</h2>
+
+</header>
+
+
+
+<main>
+
+
+<section class="card">
+
+<h2>📅 Daily Verse</h2>
+
+<div id="daily"></div>
+
+</section>
+
+
+
+<section class="card">
+
+<h2>📖 Bible</h2>
+
+
+<select id="book"></select>
+
+<select id="chapter"></select>
+
+
+<button onclick="readChapter()">
+Read
+</button>
+
+
+<div id="reader"></div>
+
+
+</section>
+
+
+
+
+<section class="card">
+
+
+<h2>🤖 AI Bible Assistant</h2>
+
+
+<div id="chat"></div>
+
+
+<input id="question"
+placeholder="Ask about scripture">
+
+
+<button onclick="askAI()">
+Ask AI
+</button>
+
+
+</section>
+
+
+
+
+<section class="card">
+
+<h2>⭐ Favorites</h2>
+
+<div id="favorites"></div>
+
+</section>
+
+
+
+</main>
+
+
+<script src="bible/bible.js"></script>
+
+<script src="app.js"></script>
+
+
+</body>
+</html>
