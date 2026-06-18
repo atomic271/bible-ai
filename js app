@@ -1,0 +1,185 @@
+
+let currentBook;
+
+
+const books=Object.keys(Bible);
+
+
+
+const bookSelect=
+document.getElementById("book");
+
+
+
+books.forEach(b=>{
+
+let option=document.createElement("option");
+
+option.textContent=b;
+
+option.value=b;
+
+bookSelect.appendChild(option);
+
+});
+
+
+
+
+function loadChapters(){
+
+
+let ch=document.getElementById("chapter");
+
+ch.innerHTML="";
+
+
+Object.keys(
+Bible[bookSelect.value]
+)
+.forEach(c=>{
+
+
+let o=document.createElement("option");
+
+o.value=c;
+
+o.textContent="Chapter "+c;
+
+
+ch.appendChild(o);
+
+
+});
+
+
+}
+
+
+
+bookSelect.onchange=loadChapters;
+
+
+loadChapters();
+
+
+
+
+function readChapter(){
+
+
+let b=bookSelect.value;
+
+let c=document.getElementById("chapter").value;
+
+
+
+document.getElementById("reader").innerHTML=
+
+
+Bible[b][c].join("<br><br>");
+
+
+
+}
+
+
+
+
+function dailyVerse(){
+
+
+let verses=[
+
+"John 3:16 - God loves the world",
+
+"Psalm 23 - The Lord is my shepherd",
+
+"Philippians 4:13 - Strength through Christ"
+
+];
+
+
+let d=new Date().getDate();
+
+
+document.getElementById("daily")
+.innerText=
+verses[d % verses.length];
+
+
+}
+
+
+dailyVerse();
+
+
+
+
+
+async function askAI(){
+
+
+let q=document.getElementById("question").value;
+
+
+let chat=document.getElementById("chat");
+
+
+chat.innerHTML+=
+`
+<div class="message">
+You: ${q}
+</div>
+`;
+
+
+
+let response=await fetch(
+
+"http://localhost:3000/ai",
+
+{
+
+method:"POST",
+
+headers:{
+
+"Content-Type":"application/json"
+
+},
+
+
+body:JSON.stringify({
+
+question:q
+
+})
+
+}
+
+
+);
+
+
+
+let data=await response.json();
+
+
+
+chat.innerHTML+=
+
+`
+
+<div class="message">
+
+AI:
+${data.answer}
+
+</div>
+
+`;
+
+
+
+}
